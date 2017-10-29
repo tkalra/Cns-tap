@@ -1,3 +1,23 @@
 page-home {
+  .start-page {
+    background: green;
+  }
 
+  .tap-page {
+    background: orange;
+    transition: background 0.1s ease-in-out;
+
+    &.page-clicked {
+      background: red;
+    }
+  }
+
+  .result-page {
+    background: blue;
+  }
+
+  ion-content > div {
+    text-align: center;
+    color: #fff;
+  }
 }
