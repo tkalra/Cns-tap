@@ -17,7 +17,7 @@ enum PageStates {
 export class HomePage {
   PageStates = PageStates;
   state = PageStates.Start;
-  pageClass = ['start-page', 'tap-page', 'result-page'];
+  pageClass = [PageStates.Start, PageStates.Tap, PageStates.Result];
   currentPageClass;
   countdown: number = COUNTDOWN_TIMER;
   isSessionStarted: boolean = false;
@@ -46,8 +46,8 @@ export class HomePage {
         }
       }, 1000);
     };
-    this.isSessionStarted = true;
     countdownTimer();
+    this.isSessionStarted = true;
   }
 
   handleClick() {
