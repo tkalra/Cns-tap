@@ -13,11 +13,13 @@ export class HomePage {
   currentPageClass;
   countdown: number = COUNTDOWN_TIMER;
   isSessionStarted: boolean = false;
+  timesClicked: number = 0;
 
   constructor(public navCtrl: NavController) {}
 
   startSession() {
     this.countdown = COUNTDOWN_TIMER;
+    this.timesClicked = 0;
     this.state++;
     if (this.state == 3) {
       this.state = 0;
@@ -46,6 +48,7 @@ export class HomePage {
 
   handleClick() {
     if (this.isSessionStarted) {
+      this.timesClicked++;
       this.currentPageClass = this.pageClass[1] + ' page-clicked';
       setTimeout(() => {
         this.currentPageClass = this.pageClass[1];

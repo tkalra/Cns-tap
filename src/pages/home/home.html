@@ -11,8 +11,7 @@
   </div>
   <div *ngIf='state == 1'>{{countdown}}</div>
   <div *ngIf='state == 2'>
-    <h3>Result</h3>
-    <button ion-button (click)="backToHome()">Click</button>
+    <h3>Result: {{timesClicked}}</h3>
+    <button ion-button (click)="backToHome()">Go Home</button>
   </div>
-
 </ion-content>
