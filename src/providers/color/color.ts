@@ -124,14 +124,17 @@ export class ColorProvider {
 
   /**
    * Given a baseColor in Rgb and a number intensity, return a new Rgb color that
-   * is darker than baseColor by intensity%
-   * @param baseColor is the starting color
-   * @param intensity is the percent amount to darken baseColor by
+   * has given intensity
+   * @param baseColor the initial color in Rgb
+   * @param intensity in range [0, 100] where 0 intensity is white and 100 is black
    */
   getColor(baseColor: Rgb, intensity: number) {
-    // TODO: handle bounds of intensity
+    if (intensity < 0 || intensity > 100) {
+      console.log('invalid color intensity');
+      return;
+    }
     var hslColor = this.rgbToHsl(baseColor.r, baseColor.g, baseColor.b);
-    hslColor.l -= intensity;
+    hslColor.l = 100 - intensity;
     var newColor = new Rgb();
     Object.assign(newColor, this.hslToRgb(hslColor.h, hslColor.s, hslColor.l));
     return newColor;
