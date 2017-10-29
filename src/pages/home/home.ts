@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
+import { Rgb, ColorProvider } from '../../providers/color/color';
+
 const COUNTDOWN_TIMER = 10;
 enum PageStates {
   Start = 'start-page',
