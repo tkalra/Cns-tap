@@ -1,17 +1,17 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>Home</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content class='start-page' [ngClass]='currentPageClass' (click)='handleClick()'>
-  <div *ngIf='state == 0'>
+  <div *ngIf='state == PageStates.Start'>
     <h3>Start a session!</h3>
     <button ion-button (click)="startSession()">Click</button>
   </div>
-  <div *ngIf='state == 1'>{{countdown}}</div>
-  <div *ngIf='state == 2'>
+  <div *ngIf='state == PageStates.Tap'>{{countdown}}</div>
+  <div *ngIf='state == PageStates.Result'>
     <h3>Result: {{timesClicked}}</h3>
-    <button ion-button (click)="backToHome()">Go Home</button>
+    <button ion-button (click)="showPage(PageStates.Start)">Go Home</button>
   </div>
 </ion-content>

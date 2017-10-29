@@ -2,13 +2,19 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
 const COUNTDOWN_TIMER = 10;
+enum PageStates {
+  Start = 'start-page',
+  Tap = 'tap-page',
+  Result = 'result-page'
+}
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
-  state: number = 0;
+  PageStates = PageStates;
+  state = PageStates.Start;
   pageClass = ['start-page', 'tap-page', 'result-page'];
   currentPageClass;
   countdown: number = COUNTDOWN_TIMER;
@@ -17,14 +23,15 @@ export class HomePage {
 
   constructor(public navCtrl: NavController) {}
 
+  showPage(pageState) {
+    this.state = pageState;
+    this.currentPageClass = pageState;
+  }
+
   startSession() {
     this.countdown = COUNTDOWN_TIMER;
     this.timesClicked = 0;
-    this.state++;
-    if (this.state == 3) {
-      this.state = 0;
-    }
-    this.currentPageClass = this.pageClass[this.state];
+    this.showPage(PageStates.Tap);
 
     var countdownTimer = () => {
       setTimeout(() => {
@@ -33,7 +40,7 @@ export class HomePage {
           countdownTimer();
         } else {
           this.isSessionStarted = false;
-          this.showResult();
+          this.showPage(PageStates.Result);
         }
       }, 1000);
     };
@@ -41,23 +48,13 @@ export class HomePage {
     countdownTimer();
   }
 
-  showResult() {
-    this.state = 2;
-    this.currentPageClass = this.pageClass[this.state];
-  }
-
   handleClick() {
     if (this.isSessionStarted) {
       this.timesClicked++;
-      this.currentPageClass = this.pageClass[1] + ' page-clicked';
+      this.currentPageClass = PageStates.Tap + ' page-clicked';
       setTimeout(() => {
-        this.currentPageClass = this.pageClass[1];
+        this.currentPageClass = PageStates.Tap;
       }, 100);
     }
-  }
-
-  backToHome() {
-    this.state = 0;
-    this.currentPageClass = this.pageClass[0];
   }
 }
