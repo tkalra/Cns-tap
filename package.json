@@ -9,7 +9,8 @@
     "build": "ionic-app-scripts build",
     "lint": "ionic-app-scripts lint",
     "ionic:build": "ionic-app-scripts build",
-    "ionic:serve": "ionic-app-scripts serve"
+    "ionic:serve": "ionic-app-scripts serve",
+    "test": "./node_modules/karma/bin/karma start karma.conf.js"
   },
   "dependencies": {
     "@angular/common": "4.4.4",
@@ -38,6 +39,12 @@
   },
   "devDependencies": {
     "@ionic/app-scripts": "3.0.1",
+    "@types/jasmine": "^2.6.2",
+    "jasmine-core": "^2.8.0",
+    "karma": "^1.7.1",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-jasmine": "^1.1.0",
+    "karma-typescript-preprocessor": "^0.3.1",
     "typescript": "2.3.4"
   },
   "description": "An Ionic project",
