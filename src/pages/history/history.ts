@@ -1,4 +1,4 @@
-import { DataProvider, Data } from '../../providers/data/data';
+import { Data, DataProvider } from '../../providers/data/data';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
@@ -28,7 +28,7 @@ export class HistoryPage {
     this.chartData = new ChartData().data;
     this.data.forEach(entry => {
       let series = this.chartData[0];
-      series.data.push(entry.result);
+      series.data.push(Math.round(entry.result * 10) / 10);
     });
   }
 

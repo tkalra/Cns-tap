@@ -52,7 +52,7 @@ export class DataProvider {
       // Average the result
       let dataForDateString: Data = this.tapDbByKey[dateString];
       dataForDateString.result += tapResult;
-      dataForDateString.result = Math.round(dataForDateString.result * 5) / 10;
+      dataForDateString.result /= 2;
     } else {
       let data = new Data();
       data.date = dateString;
