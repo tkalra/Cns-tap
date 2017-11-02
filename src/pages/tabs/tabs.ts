@@ -11,7 +11,7 @@ import { HistoryPage } from '../history/history';
 export class TabsPage {
   tab1Root = HomePage;
   tab2Root = HistoryPage;
-  tab3Root = ContactPage;
+  tab3Root = AboutPage;
 
   constructor() {}
 }

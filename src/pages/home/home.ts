@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
 import { Rgb, ColorProvider } from '../../providers/color/color';
-import { Data, DataProvider } from '../../providers/data/data';
+import { DataProvider } from '../../providers/data/data';
 
 const COUNTDOWN_TIMER = 10;
 const PageStates = {
@@ -45,7 +45,7 @@ export class HomePage {
     var countdownTimer = () => {
       setTimeout(() => {
         this.countdown--;
-        if (this.countdown >= 0) {
+        if (this.countdown > 0) {
           countdownTimer();
         } else {
           this.dataProvider.record(this.timesClicked);
@@ -66,5 +66,14 @@ export class HomePage {
         this.currentPageClass = PageStates.Tap;
       }, 100);
     }
+  }
+
+  ionViewDidLeave() {
+    this.showPage(PageStates.Start);
+  }
+
+  ionViewCanLeave(): boolean {
+    console.log(this.isSessionStarted);
+    return !this.isSessionStarted;
   }
 }
