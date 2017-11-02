@@ -2,67 +2,51 @@ import { DataProvider, Data } from '../../providers/data/data';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
+export class ChartData {
+  data: Array<any> = [
+    {
+      data: [],
+      label: 'This Week'
+    }
+  ];
+}
+
 @Component({
   selector: 'page-history',
   templateUrl: 'history.html'
 })
 export class HistoryPage {
   data: Data[];
-  chartData: Array<any> = [
-    {
-      data: [],
-      label: 'This Week'
-    }
-  ];
+  chartData: Array<any> = new ChartData().data;
 
   chartLabels: Array<any> = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider) {}
+
+  loadData() {
     this.data = this.dataProvider.getThisWeek();
-
-    this.data = [
-      {
-        date: '2017-10-31',
-        result: 100
-      },
-      {
-        date: '2017-10-30',
-        result: 70
-      },
-      {
-        date: '2017-10-29',
-        result: 60
-      },
-      {
-        date: '2017-10-28',
-        result: 0
-      },
-      {
-        date: '2017-10-27',
-        result: 20
-      },
-      {
-        date: '2017-10-26',
-        result: 0
-      },
-      {
-        date: '2017-10-25',
-        result: 0
-      }
-    ];
-
+    this.chartData = new ChartData().data;
     this.data.forEach(entry => {
       let series = this.chartData[0];
-      series.data.unshift(entry.result);
+      series.data.push(entry.result);
     });
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad HistoryPage');
+  ionViewDidEnter() {
+    this.loadData();
   }
 
   public lineChartOptions: any = {
-    responsive: true
+    responsive: true,
+    scales: {
+      yAxes: [
+        {
+          ticks: {
+            beginAtZero: true
+          }
+        }
+      ]
+    }
   };
 
   public lineChartLegend: boolean = false;

@@ -24,10 +24,11 @@ export class Data {
 
 @Injectable()
 export class DataProvider {
-  tapDbByKey: { [key: string]: number };
+  tapDbByKey: { [key: string]: Data } = {};
   tapDb: Data[];
 
   constructor() {
+    console.log('Initialized');
     let tapDb = localStorage.get(DB_KEY);
     if (!tapDb) {
       this.tapDb = [];
@@ -35,7 +36,7 @@ export class DataProvider {
     } else {
       tapDb = this.decompress(tapDb);
       tapDb.forEach((el: Data) => {
-        this.tapDbByKey[el.date] = el.result;
+        this.tapDbByKey[el.date] = el;
       });
       this.tapDb = tapDb;
     }
@@ -49,21 +50,22 @@ export class DataProvider {
     const dateString = this.getDateString(new Date());
     if (this.tapDbByKey[dateString]) {
       // Average the result
-      this.tapDbByKey[dateString] += tapResult;
-      this.tapDbByKey[dateString] /= 2;
+      let dataForDateString: Data = this.tapDbByKey[dateString];
+      dataForDateString.result += tapResult;
+      dataForDateString.result /= 2;
     } else {
-      this.tapDbByKey[dateString] = tapResult;
-
       let data = new Data();
       data.date = dateString;
       data.result = tapResult;
       this.tapDb.unshift(data);
+      this.tapDbByKey[dateString] = data;
     }
 
     if (this.tapDb.length > DAYS_SAVED) {
       this.tapDb.pop();
     }
 
+    console.log(this.tapDb, this.tapDbByKey);
     this.save();
   }
 
@@ -73,25 +75,28 @@ export class DataProvider {
     const diff = currentDate.getDate() - day + (day == 0 ? -6 : 1);
     const startWeek = new Date(currentDate.setDate(diff));
 
-    var resultsArray = [];
+    console.log(this.tapDb, this.tapDbByKey);
+    let resultsArray = [];
     for (let i = 0; i < 7; i++) {
-      var dateString = this.getDateString(startWeek);
-      var result = this.tapDbByKey[dateString];
+      let dateString = this.getDateString(startWeek);
+      let result: Data = this.tapDbByKey[dateString];
       if (result) {
         resultsArray.push(result);
       } else {
-        var emptyData = new Data();
+        let emptyData = new Data();
         emptyData.date = dateString;
         emptyData.result = 0;
         resultsArray.push(emptyData);
       }
+
+      startWeek.setDate(startWeek.getDate() + 1);
     }
 
     return resultsArray;
   }
 
   private getDateString(date: Date): string {
-    return date.getUTCFullYear() + '-' + date.getUTCMonth() + '-' + date.getUTCDate();
+    return date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
   }
 
   private compress(db) {
