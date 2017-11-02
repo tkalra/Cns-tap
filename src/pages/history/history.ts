@@ -19,7 +19,7 @@ export class HistoryPage {
   data: Data[];
   chartData: Array<any> = new ChartData().data;
 
-  chartLabels: Array<any> = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+  chartLabels: Array<any> = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider) {}
 
@@ -39,6 +39,13 @@ export class HistoryPage {
   public lineChartOptions: any = {
     responsive: true,
     scales: {
+      xAxes: [
+        {
+          ticks: {
+            autoSkip: false
+          }
+        }
+      ],
       yAxes: [
         {
           ticks: {
@@ -51,4 +58,14 @@ export class HistoryPage {
 
   public lineChartLegend: boolean = false;
   public lineChartType: string = 'line';
+  public lineChartColors: Array<any> = [
+    {
+      backgroundColor: 'rgba(144, 202, 249, 0.5)',
+      borderColor: '#2196f3',
+      pointBackgroundColor: 'rgba(1, 87, 155, 1)',
+      pointBorderColor: 'rgba(0, 150, 136, 1)',
+      pointHoverBackgroundColor: '#fff'
+      // pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+    }
+  ];
 }
