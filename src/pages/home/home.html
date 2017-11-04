@@ -1,14 +1,10 @@
-<ion-header>
-  <ion-navbar color='dark'>
-    <ion-title>CNS Tap</ion-title>
-  </ion-navbar>
-</ion-header>
-
 <ion-content class='start-page' [ngClass]='currentPageClass' (click)='handleClick()'>
   <div *ngIf='state == PageStates.Start' class='page'>
     <h3>Start a session!</h3>
     <button class='start-button' ion-button (click)="startSession()">
-      <ion-icon name="hand"></ion-icon>
+      <div class='icon'>
+        <i class="fa fa-hand-pointer-o" aria-hidden="true"></i>
+      </div>
       <div class='title'>Start</div>
     </button>
   </div>
