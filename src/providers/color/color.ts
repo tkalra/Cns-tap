@@ -11,6 +11,12 @@ export class Rgb {
   r: number;
   g: number;
   b: number;
+
+  constructor(r: number, g: number, b: number) {
+    this.r = r;
+    this.g = g;
+    this.b = b;
+  }
 }
 
 @Injectable()
@@ -123,20 +129,19 @@ export class ColorProvider {
   }
 
   /**
-   * Given a baseColor in Rgb and a number intensity, return a new Rgb color that
-   * has given intensity
+   * Given a baseColor in Rgb and a number intensity, return a new Rgb color
+   * that is lighter by intensity
    * @param baseColor the initial color in Rgb
-   * @param intensity in range [0, 100] where 0 intensity is white and 100 is black
+   * @param intensity the amount to lighten color by
+   * @return an Rgb object
    */
   getColor(baseColor: Rgb, intensity: number) {
-    if (intensity < 0 || intensity > 100) {
-      console.log('invalid color intensity');
-      return;
+    let hslColor = this.rgbToHsl(baseColor.r, baseColor.g, baseColor.b);
+    let newL = hslColor.l + intensity;
+    if (newL >= 0 && newL <= 100) {
+      hslColor.l = newL;
     }
-    var hslColor = this.rgbToHsl(baseColor.r, baseColor.g, baseColor.b);
-    hslColor.l = 100 - intensity;
-    var newColor = new Rgb();
-    Object.assign(newColor, this.hslToRgb(hslColor.h, hslColor.s, hslColor.l));
-    return newColor;
+    let obj = this.hslToRgb(hslColor.h, hslColor.s, hslColor.l);
+    return new Rgb(obj.r, obj.g, obj.g);
   }
 }
