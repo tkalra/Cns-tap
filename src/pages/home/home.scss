@@ -3,15 +3,6 @@ page-home {
     background: #3f51b5;
   }
 
-  .tap-page {
-    background: orange;
-    transition: background 0.1s ease-in-out;
-
-    &.page-clicked {
-      background: red;
-    }
-  }
-
   .result-page {
     background: #3f51b5;
   }
