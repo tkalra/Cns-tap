@@ -1,15 +1,13 @@
-<ion-header>
-  <ion-navbar color='dark'>
-    <ion-title>CNS Tap</ion-title>
-  </ion-navbar>
-</ion-header>
-
 <ion-content class='start-page' [ngClass]='currentPageClass' (click)='handleClick()'>
   <div *ngIf='state == PageStates.Start' class='page'>
-    <h3>Start a session!</h3>
+    <h3 *ngIf='!today'>Start a session!</h3>
+    <h3 *ngIf='today'>Today's result is {{today.result}}</h3>
     <button class='start-button' ion-button (click)="startSession()">
-      <ion-icon name="hand"></ion-icon>
-      <div class='title'>Start</div>
+      <div class='icon'>
+        <i class="fa fa-hand-pointer-o" aria-hidden="true"></i>
+      </div>
+      <div *ngIf='!today' class='title'>Start</div>
+      <div *ngIf='today' class='title'>Beat It!</div>
     </button>
   </div>
   <div *ngIf='state == PageStates.Tap' class='page' tapColor>
@@ -26,8 +24,10 @@
         </div>
         <div>You did</div>
         <div>{{timesClicked}} taps</div>
-        <button ion-button (click)="showPage(PageStates.Start)" large>Done!</button>
       </ion-card-content>
     </ion-card>
+    <div *ngIf='isDoneButtonShown' class='done-button'>
+      <button ion-button full (click)="showPage(PageStates.Start)" large>Start Another!</button>
+    </div>
   </div>
 </ion-content>
