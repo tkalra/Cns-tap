@@ -28,7 +28,6 @@ export class DataProvider {
   tapDb: Data[];
 
   constructor() {
-    console.log('Initialized');
     let tapDb = localStorage.get(DB_KEY);
     if (!tapDb) {
       this.tapDb = [];
@@ -51,8 +50,10 @@ export class DataProvider {
     if (this.tapDbByKey[dateString]) {
       // Average the result
       let dataForDateString: Data = this.tapDbByKey[dateString];
-      dataForDateString.result += tapResult;
-      dataForDateString.result /= 2;
+      let result = dataForDateString.result;
+      result += tapResult;
+      result /= 2;
+      dataForDateString.result = Math.round(result);
     } else {
       let data = new Data();
       data.date = dateString;
@@ -65,8 +66,17 @@ export class DataProvider {
       this.tapDb.pop();
     }
 
-    console.log(this.tapDb, this.tapDbByKey);
     this.save();
+  }
+
+  getToday() {
+    const currentDate = new Date();
+    const dateString = this.getDateString(currentDate);
+    var result = this.tapDbByKey[dateString];
+    if (result) {
+      return result;
+    }
+    return null;
   }
 
   getThisWeek() {
@@ -75,7 +85,6 @@ export class DataProvider {
     const diff = currentDate.getDate() - day + (day == 0 ? -6 : 1);
     const startWeek = new Date(currentDate.setDate(diff));
 
-    console.log(this.tapDb, this.tapDbByKey);
     let resultsArray = [];
     for (let i = 0; i < 7; i++) {
       let dateString = this.getDateString(startWeek);

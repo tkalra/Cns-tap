@@ -46,7 +46,7 @@ page-home {
     .icon {
       margin-bottom: 25px;
       animation-iteration-count: infinite;
-      animation: 1.5s ease-in-out infinite reverse both pointerAnim;
+      animation: 1.8s ease-in-out infinite reverse both pointerAnim;
     }
     .title {
       font-size: 40px;
@@ -54,6 +54,13 @@ page-home {
     .button-inner {
       display: block;
     }
+  }
+
+  .done-button {
+    position: fixed;
+    bottom: 100px;
+    left: 45px;
+    right: 45px;
   }
 
   ion-card.card {

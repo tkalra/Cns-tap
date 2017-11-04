@@ -2,9 +2,11 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
 import { Rgb, ColorProvider } from '../../providers/color/color';
-import { DataProvider } from '../../providers/data/data';
+import { Data, DataProvider } from '../../providers/data/data';
 
 const COUNTDOWN_TIMER = 10;
+const START_ANOTHER_SESSION_DELAY = 3000; // in ms
+
 const PageStates = {
   Start: 'start-page',
   Tap: 'tap-page',
@@ -24,12 +26,13 @@ export class HomePage {
   isSessionStarted: boolean = false;
   timesClicked: number = 0;
   tapColor;
+  today: Data; // Today's result
 
-  constructor(
-    public navCtrl: NavController,
-    private colorProvider: ColorProvider,
-    private dataProvider: DataProvider
-  ) {}
+  isDoneButtonShown: boolean = false;
+
+  constructor(public navCtrl: NavController, private colorProvider: ColorProvider, private dataProvider: DataProvider) {
+    this.today = dataProvider.getToday();
+  }
 
   showPage(pageState) {
     this.state = pageState;
@@ -50,6 +53,12 @@ export class HomePage {
         } else {
           this.dataProvider.record(this.timesClicked);
           this.isSessionStarted = false;
+          this.today = this.dataProvider.getToday();
+          this.isDoneButtonShown = false;
+          setTimeout(() => {
+            console.log('here');
+            this.isDoneButtonShown = true;
+          }, START_ANOTHER_SESSION_DELAY);
           this.showPage(PageStates.Result);
         }
       }, 1000);
@@ -73,7 +82,6 @@ export class HomePage {
   }
 
   ionViewCanLeave(): boolean {
-    console.log(this.isSessionStarted);
     return !this.isSessionStarted;
   }
 }
