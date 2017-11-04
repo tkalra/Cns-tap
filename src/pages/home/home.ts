@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-
-import { Rgb, ColorProvider } from '../../providers/color/color';
 import { DataProvider } from '../../providers/data/data';
 
 const COUNTDOWN_TIMER = 10;
@@ -23,13 +21,8 @@ export class HomePage {
   countdown: number = COUNTDOWN_TIMER;
   isSessionStarted: boolean = false;
   timesClicked: number = 0;
-  tapColor;
 
-  constructor(
-    public navCtrl: NavController,
-    private colorProvider: ColorProvider,
-    private dataProvider: DataProvider
-  ) {}
+  constructor(public navCtrl: NavController, private dataProvider: DataProvider) {}
 
   showPage(pageState) {
     this.state = pageState;
@@ -39,7 +32,6 @@ export class HomePage {
   startSession() {
     this.countdown = COUNTDOWN_TIMER;
     this.timesClicked = 0;
-    this.tapColor = { r: 255, g: 160, b: 0 };
     this.showPage(PageStates.Tap);
 
     var countdownTimer = () => {
@@ -61,10 +53,6 @@ export class HomePage {
   handleClick() {
     if (this.isSessionStarted) {
       this.timesClicked++;
-      this.currentPageClass = PageStates.Tap + ' page-clicked';
-      setTimeout(() => {
-        this.currentPageClass = PageStates.Tap;
-      }, 100);
     }
   }
 
