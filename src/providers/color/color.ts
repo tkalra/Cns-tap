@@ -142,6 +142,6 @@ export class ColorProvider {
       hslColor.l = newL;
     }
     let obj = this.hslToRgb(hslColor.h, hslColor.s, hslColor.l);
-    return new Rgb(obj.r, obj.g, obj.g);
+    return new Rgb(obj.r, obj.g, obj.b);
   }
 }

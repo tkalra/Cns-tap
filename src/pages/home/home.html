@@ -10,7 +10,7 @@
       <div *ngIf='today' class='title'>Beat It!</div>
     </button>
   </div>
-  <div *ngIf='state == PageStates.Tap' class='page' tapColor>
+  <div *ngIf='state == PageStates.Tap' class='page' [tapColor]='countdown'>
     <div class='countdown'>{{countdown}}</div>
   </div>
   <div *ngIf='state == PageStates.Result' class='page'>
