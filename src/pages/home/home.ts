@@ -3,7 +3,7 @@ import { NavController } from 'ionic-angular';
 import { Data, DataProvider } from '../../providers/data/data';
 
 const COUNTDOWN_TIMER = 10;
-const START_ANOTHER_SESSION_DELAY = 3000; // in ms
+const START_ANOTHER_SESSION_DELAY = 2000; // in ms
 
 const PageStates = {
   Start: 'start-page',
