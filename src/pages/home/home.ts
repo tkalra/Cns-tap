@@ -37,10 +37,6 @@ export class HomePage {
   }
 
   startSession() {
-    this.countdown = COUNTDOWN_TIMER;
-    this.timesClicked = 0;
-    this.showPage(PageStates.Tap);
-
     var countdownTimer = () => {
       setTimeout(() => {
         this.countdown--;
@@ -52,15 +48,18 @@ export class HomePage {
           this.today = this.dataProvider.getToday();
           this.isDoneButtonShown = false;
           setTimeout(() => {
-            console.log('here');
             this.isDoneButtonShown = true;
           }, START_ANOTHER_SESSION_DELAY);
           this.showPage(PageStates.Result);
         }
       }, 1000);
     };
-    countdownTimer();
+
     this.isSessionStarted = true;
+    this.countdown = COUNTDOWN_TIMER;
+    this.timesClicked = 0;
+    this.showPage(PageStates.Tap);
+    countdownTimer();
   }
 
   handleClick() {
