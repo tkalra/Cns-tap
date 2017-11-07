@@ -24,7 +24,6 @@ export class HomePage {
   isSessionStarted: boolean = false;
   timesClicked: number = 0;
   today: Data; // Today's result
-
   isDoneButtonShown: boolean = false;
 
   constructor(public navCtrl: NavController, private dataProvider: DataProvider) {

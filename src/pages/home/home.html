@@ -2,9 +2,9 @@
   <div *ngIf='state == PageStates.Start' class='page'>
     <h3 *ngIf='!today'>Start a session!</h3>
     <h3 *ngIf='today'>Today's result is {{today.result}}</h3>
-    <button class='start-button' ion-button (click)="startSession()">
+    <button class='start-button' ion-button (click)='startSession()'>
       <div class='icon'>
-        <i class="fa fa-hand-pointer-o" aria-hidden="true"></i>
+        <i class='fa fa-hand-pointer-o' aria-hidden='true'></i>
       </div>
       <div *ngIf='!today' class='title'>Start</div>
       <div *ngIf='today' class='title'>Beat It!</div>
@@ -20,14 +20,14 @@
       </ion-card-header>
       <ion-card-content>
         <div>
-          <ion-icon name="happy"></ion-icon>
+          <ion-icon name='happy'></ion-icon>
         </div>
         <div>You did</div>
         <div>{{timesClicked}} taps</div>
       </ion-card-content>
     </ion-card>
     <div *ngIf='isDoneButtonShown' class='done-button'>
-      <button ion-button full (click)="showPage(PageStates.Start)" large>Start Another!</button>
+      <button ion-button full (click)='showPage(PageStates.Start)' large>Start Another!</button>
     </div>
   </div>
 </ion-content>
