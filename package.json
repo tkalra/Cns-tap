@@ -26,6 +26,7 @@
     "@ionic/storage": "2.0.1",
     "chart.js": "^2.7.1",
     "cordova-android": "^6.3.0",
+    "cordova-ios": "4.5.3",
     "cordova-plugin-device": "^1.1.6",
     "cordova-plugin-ionic-webview": "^1.1.16",
     "cordova-plugin-splashscreen": "^4.0.3",
@@ -52,7 +53,10 @@
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-ionic-webview": {}
     },
-    "platforms": ["android"]
+    "platforms": [
+      "android",
+      "ios"
+    ]
   },
   "config": {
     "ionic_copy": "./scripts/copy.js"
