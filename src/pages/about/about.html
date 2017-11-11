@@ -1,27 +1,8 @@
-<ion-content padding class='about-page'>
+<ion-content padding class='about-page' no-bounce>
   <div class='container--about'>
     <div>
       <h3>Slides!</h3>
-      <button ion-button (click)='toggleSlides()'>Show me</button>
+      <button ion-button (click)='showSlides()'>Show me</button>
     </div>
-    <ion-slides pager *ngIf='areSlidesShown'>
-      <ion-slide *ngFor='let slide of slides'>
-        <ion-toolbar>
-          <ion-buttons end>
-            <button ion-button color='primary'>Skip</button>
-          </ion-buttons>
-        </ion-toolbar>
-        <h1 [innerHTML]='slide.title'></h1>
-        <p [innerHTML]='slide.description'></p>
-      </ion-slide>
-      <ion-slide>
-        <ion-toolbar>
-        </ion-toolbar>
-        <button ion-button large clear icon-end color="primary">
-          Continue
-          <ion-icon name="arrow-forward"></ion-icon>
-        </button>
-      </ion-slide>
-    </ion-slides>
   </div>
 </ion-content>
