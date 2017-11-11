@@ -18,4 +18,21 @@ ion-header.header {
   .toolbar .title {
     text-align: center;
   }
+
+  .main {
+    height: 100px;
+    text-align: center;
+
+    img {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto;
+    }
+  }
+}
+
+ion-nav.root {
+  .content > div {
+    padding-top: 100px !important;
+  }
 }
