@@ -17,6 +17,7 @@ import { TapColorDirective } from '../directives/tap-color/tap-color';
 import { ColorProvider } from '../providers/color/color';
 import { DataProvider } from '../providers/data/data';
 import { AppStateProvider } from '../providers/app-state/app-state';
+import { StorageProvider } from '../providers/storage/storage';
 
 @NgModule({
   declarations: [MyApp, AboutPage, ContactPage, HistoryPage, HomePage, SlidesPage, TabsPage, TapColorDirective],
@@ -29,7 +30,8 @@ import { AppStateProvider } from '../providers/app-state/app-state';
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     ColorProvider,
     DataProvider,
-    AppStateProvider
+    AppStateProvider,
+    StorageProvider
   ]
 })
 export class AppModule {}

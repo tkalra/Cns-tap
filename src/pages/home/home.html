@@ -12,7 +12,7 @@
     <h3 *ngIf='today'>Today's result is {{today.result}}</h3>
     <button class='start-button' ion-button (click)='startSession()'>
       <div class='icon'>
-        <i class='fa fa-hand-pointer-o' [ngClass]='{"reversed": hand=="true"}' aria-hidden='true'></i>
+        <i class='fa fa-hand-pointer-o' [ngClass]='{"reversed": hand === "true"}' aria-hidden='true'></i>
       </div>
       <div *ngIf='!today' class='title'>Start</div>
       <div *ngIf='today' class='title'>Beat It!</div>

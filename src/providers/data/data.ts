@@ -1,20 +1,9 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
+import { StorageProvider } from '../storage/storage';
 
 const DB_KEY = 'db';
 const DAYS_SAVED = 365 * 2 + 1; // 2 years with leap year
-
-const localStorage = {
-  get: key => {
-    return JSON.parse(window.localStorage[key] || 'null');
-  },
-  set: (key, value) => {
-    window.localStorage[key] = JSON.stringify(value);
-  },
-  removeAll: () => {
-    window.localStorage.clear();
-  }
-};
 
 export class Data {
   date: string;
@@ -26,8 +15,8 @@ export class DataProvider {
   tapDbByKey: { [key: string]: Data } = {};
   tapDb: Data[];
 
-  constructor() {
-    let tapDb = localStorage.get(DB_KEY);
+  constructor(private storageProvider: StorageProvider) {
+    let tapDb = this.storageProvider.get(DB_KEY);
     if (!tapDb) {
       this.tapDb = [];
       this.tapDbByKey = {};
@@ -41,7 +30,7 @@ export class DataProvider {
   }
 
   save() {
-    localStorage.set(DB_KEY, this.compress(this.tapDb));
+    this.storageProvider.set(DB_KEY, this.compress(this.tapDb));
   }
 
   record(tapResult: number) {

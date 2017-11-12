@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { App, NavController } from 'ionic-angular';
 import { SlidesPage } from '../slides/slides';
 
 @Component({
@@ -7,9 +7,9 @@ import { SlidesPage } from '../slides/slides';
   templateUrl: 'about.html'
 })
 export class AboutPage {
-  constructor(public navCtrl: NavController) {}
+  constructor(public navCtrl: NavController, private appCtrl: App) {}
 
   showSlides() {
-    this.navCtrl.push(SlidesPage);
+    this.appCtrl.getRootNav().push(SlidesPage);
   }
 }

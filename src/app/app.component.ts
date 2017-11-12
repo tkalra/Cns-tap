@@ -19,8 +19,4 @@ export class MyApp {
       splashScreen.hide();
     });
   }
-
-  changeRootPage(page) {
-    this.rootPage = page;
-  }
 }

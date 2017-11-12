@@ -1,3 +1,8 @@
+<ion-header>
+  <ion-navbar class='main' color='dark'>
+    <img src='./assets/imgs/cns.png' />
+  </ion-navbar>
+</ion-header>
 <ion-tabs>
   <ion-tab [root]="tab1Root" [enabled]='!appState.isSessionStarted' tabTitle="Home" tabIcon="home"></ion-tab>
   <ion-tab [root]="tab2Root" [enabled]='!appState.isSessionStarted' tabTitle="History" tabIcon="podium"></ion-tab>
