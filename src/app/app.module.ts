@@ -13,6 +13,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { TapColorDirective } from '../directives/tap-color/tap-color';
 import { ColorProvider } from '../providers/color/color';
 import { DataProvider } from '../providers/data/data';
@@ -27,6 +28,7 @@ import { StorageProvider } from '../providers/storage/storage';
   providers: [
     StatusBar,
     SplashScreen,
+    ScreenOrientation,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     ColorProvider,
     DataProvider,
