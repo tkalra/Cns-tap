@@ -23,7 +23,7 @@ export class HomePage {
   countdown: number = COUNTDOWN_TIMER;
   isSessionStarted: boolean = false;
   timesClicked: number = 0;
-  today: Data; // Today's result
+  today: Data[]; // Today's result
   isDoneButtonShown: boolean = false;
 
   constructor(public navCtrl: NavController, private dataProvider: DataProvider) {
