@@ -60,12 +60,11 @@ export class HistoryPage {
   public lineChartType: string = 'line';
   public lineChartColors: Array<any> = [
     {
-      backgroundColor: 'rgba(144, 202, 249, 0.5)',
-      borderColor: '#2196f3',
-      pointBackgroundColor: 'rgba(1, 87, 155, 1)',
-      pointBorderColor: 'rgba(0, 150, 136, 1)',
-      pointHoverBackgroundColor: '#fff'
-      // pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+      backgroundColor: 'rgba(79, 1, 21, 0.5)',
+      borderColor: '#CA0335',
+      pointBackgroundColor: '#96043E',
+      pointBorderColor: '#5B1646',
+      pointHoverBackgroundColor: '#FFFFFF'
     }
   ];
 }
