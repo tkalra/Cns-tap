@@ -20,6 +20,7 @@ export class AppStateProvider {
       this.state = new AppState();
     } else {
       this.state = state;
+      this.state.isSessionStarted = false;
     }
   }
 
