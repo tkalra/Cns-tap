@@ -23,7 +23,7 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       statusBar.styleLightContent();
       splashScreen.hide();
-      if (!platform.is('mobileweb')) {
+      if (!platform.is('core')) {
         screenOrientation.lock(screenOrientation.ORIENTATIONS.PORTRAIT);
       }
     });
