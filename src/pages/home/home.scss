@@ -2,22 +2,34 @@ page-home {
   .start-page {
     background: color($colors, 'bg');
 
-    .hand-selector-container {
-      max-height: 40px;
-      max-width: 85%;
-      margin-top: 0;
-      margin-bottom: 40px;
-
+    .hand-selector {
+      position: fixed;
+      top: 100px;
+      left: 0;
+      right: 0;
+      display: flex;
       .hand-selector-button {
-        height: 50px;
-      }
+        flex: 1;
+        padding: 10px 15px;
+        display: inline-block;
+        text-align: center;
 
-      p {
-        height: 20px;
-        font-size: 15px;
-        margin: 0;
-        padding-top: 10px;
-        padding-bottom: 10px;
+        &:first-child {
+          padding-right: 10px;
+        }
+
+        &:last-child {
+          padding-left: 10px;
+        }
+
+        button {
+          color: color($colors, 'dark');
+        }
+
+        button.active {
+          background-color: color($colors, 'dark') !important;
+          color:  color($colors, 'bg');
+        }
       }
     }
   }
@@ -47,11 +59,11 @@ page-home {
   }
 
   .start-button {
-    font-size: 150px;
+    font-size: 100px;
     height: auto;
-    border-radius: 300px;
-    height: 300px;
-    width: 300px;
+    border-radius: 250px;
+    height: 250px;
+    width: 250px;
     padding: 0;
     display: flex;
     align-items: center;
