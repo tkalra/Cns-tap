@@ -1,10 +1,10 @@
 page-home {
   .start-page {
-    background: #3f51b5;
+    background: color($colors, 'bg');
   }
 
   .result-page {
-    background: #3f51b5;
+    background: color($colors, 'bg');
   }
 
   ion-content .page {
@@ -15,7 +15,7 @@ page-home {
     align-items: center;
     justify-content: center;
     font-size: 3em;
-    transition: background 0.01s ease-in-out;
+    transition: background 0.03s ease-in-out;
   }
 
   .countdown {

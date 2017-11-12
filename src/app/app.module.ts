@@ -15,6 +15,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { TapColorDirective } from '../directives/tap-color/tap-color';
 import { ColorProvider } from '../providers/color/color';
 import { DataProvider } from '../providers/data/data';
+import { AppStateProvider } from '../providers/app-state/app-state';
 
 @NgModule({
   declarations: [MyApp, AboutPage, ContactPage, HomePage, TabsPage, HistoryPage, TapColorDirective],
@@ -26,7 +27,8 @@ import { DataProvider } from '../providers/data/data';
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     ColorProvider,
-    DataProvider
+    DataProvider,
+    AppStateProvider
   ]
 })
 export class AppModule {}
