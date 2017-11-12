@@ -2,10 +2,10 @@
   <div *ngIf='state == PageStates.Start' class='page'>
     <div class='hand-selector'>
       <div class='hand-selector-button'>
-        <button ion-button block outline round large (click)='switchHand(true)' [ngClass]='{ active: hand }'>Left Hand</button>
+        <button ion-button block outline round (click)='switchHand(true)' [ngClass]='{ active: hand }'>Left Hand</button>
       </div>
       <div class='hand-selector-button'>
-        <button ion-button block outline round large (click)='switchHand(false)' [ngClass]='{ active: !hand }'>Right Hand</button>
+        <button ion-button block outline round (click)='switchHand(false)' [ngClass]='{ active: !hand }'>Right Hand</button>
       </div>
     </div>
     <h3 *ngIf='!today'>Start a session!</h3>
