@@ -1,10 +1,9 @@
 <ion-content padding>
-  <h1>Test</h1>
-  <!-- <ion-slides pager>
+  <ion-slides pager>
     <ion-slide *ngFor='let slide of slides'>
       <ion-toolbar>
         <ion-buttons end>
-          <button ion-button color='primary'>Skip</button>
+          <button ion-button color='primary' (click)='endSlides()'>Skip</button>
         </ion-buttons>
       </ion-toolbar>
       <h1 [innerHTML]='slide.title'></h1>
@@ -13,10 +12,10 @@
     <ion-slide>
       <ion-toolbar>
       </ion-toolbar>
-      <button ion-button large clear icon-end color="primary">
+      <button ion-button large clear icon-end color="primary" (click)='endSlides()'>
         Continue
         <ion-icon name="arrow-forward"></ion-icon>
       </button>
     </ion-slide>
-  </ion-slides> -->
+  </ion-slides>
 </ion-content>

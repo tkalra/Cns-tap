@@ -6,7 +6,11 @@ export class ChartData {
   data: Array<any> = [
     {
       data: [],
-      label: 'This Week'
+      label: 'Right Hand'
+    },
+    {
+      data: [],
+      label: 'Left Hand'
     }
   ];
 }
@@ -27,8 +31,10 @@ export class HistoryPage {
     this.data = this.dataProvider.getThisWeek();
     this.chartData = new ChartData().data;
     this.data.forEach(entry => {
-      let series = this.chartData[0];
-      series.data.push(Math.round(entry.result * 10) / 10);
+      let seriesRight = this.chartData[0];
+      let seriesLeft = this.chartData[1];
+      seriesRight.data.push(Math.round(entry.result * 10) / 10);
+      seriesLeft.data.push(Math.floor(Math.random() * entry.result * 2)); // random [0, 2 * right hand result]
     });
   }
 
@@ -60,12 +66,20 @@ export class HistoryPage {
   public lineChartType: string = 'line';
   public lineChartColors: Array<any> = [
     {
-      backgroundColor: 'rgba(144, 202, 249, 0.5)',
-      borderColor: '#2196f3',
-      pointBackgroundColor: 'rgba(1, 87, 155, 1)',
-      pointBorderColor: 'rgba(0, 150, 136, 1)',
-      pointHoverBackgroundColor: '#fff'
-      // pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+      backgroundColor: 'rgba(230, 1, 21, 0.1)',
+      borderColor: '#CA0335',
+      pointBackgroundColor: '#96043E',
+      pointBorderColor: '#FFFFFF',
+      pointHoverBackgroundColor: '#FFFFFF',
+      pointHoverBorderColor: '#CA0335'
+    },
+    {
+      backgroundColor: 'rgba(100, 1, 13, 0.3)',
+      borderColor: '#7F0221',
+      pointBackgroundColor: '#96043E',
+      pointBorderColor: '#FFFFFF',
+      pointHoverBackgroundColor: '#FFFFFF',
+      pointHoverBorderColor: '#7F0221'
     }
   ];
 }

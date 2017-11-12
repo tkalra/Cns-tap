@@ -1,10 +1,41 @@
 page-home {
   .start-page {
-    background: #3f51b5;
+    background: color($colors, 'bg');
+
+    .hand-selector {
+      position: fixed;
+      top: 100px;
+      left: 0;
+      right: 0;
+      display: flex;
+      .hand-selector-button {
+        flex: 1;
+        padding: 10px 15px;
+        display: inline-block;
+        text-align: center;
+
+        &:first-child {
+          padding-right: 10px;
+        }
+
+        &:last-child {
+          padding-left: 10px;
+        }
+
+        button {
+          color: color($colors, 'dark');
+        }
+
+        button.active {
+          background-color: color($colors, 'dark') !important;
+          color:  color($colors, 'bg');
+        }
+      }
+    }
   }
 
   .result-page {
-    background: #3f51b5;
+    background: color($colors, 'bg');
   }
 
   ion-content .page {
@@ -15,7 +46,7 @@ page-home {
     align-items: center;
     justify-content: center;
     font-size: 3em;
-    transition: background 0.01s ease-in-out;
+    transition: background 0.03s ease-in-out;
   }
 
   .countdown {
@@ -28,11 +59,11 @@ page-home {
   }
 
   .start-button {
-    font-size: 150px;
+    font-size: 100px;
     height: auto;
-    border-radius: 300px;
-    height: 300px;
-    width: 300px;
+    border-radius: 250px;
+    height: 250px;
+    width: 250px;
     padding: 0;
     display: flex;
     align-items: center;
@@ -46,6 +77,9 @@ page-home {
     }
     .button-inner {
       display: block;
+    }
+    .reversed {
+      transform: scaleX(-1);
     }
   }
 

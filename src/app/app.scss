@@ -25,7 +25,6 @@ ion-header.header {
 
     img {
       width: 100px;
-      height: 100px;
       margin: 0 auto;
     }
   }
@@ -35,4 +34,10 @@ ion-nav.root {
   .content > div {
     padding-top: 100px !important;
   }
+}
+
+.ion-page .content.padding > div {
+  padding-top: 100px !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
 }

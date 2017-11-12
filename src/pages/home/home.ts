@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Data, DataProvider } from '../../providers/data/data';
+import { AppState, AppStateProvider } from '../../providers/app-state/app-state';
 
 const COUNTDOWN_TIMER = 10;
 const START_ANOTHER_SESSION_DELAY = 2000; // in ms
@@ -25,9 +26,17 @@ export class HomePage {
   timesClicked: number = 0;
   today: Data[]; // Today's result
   isDoneButtonShown: boolean = false;
+  hand: boolean = false; // false is right hand
 
-  constructor(public navCtrl: NavController, private dataProvider: DataProvider) {
+  appState: AppState;
+
+  constructor(public navCtrl: NavController, private dataProvider: DataProvider, appStateProvider: AppStateProvider) {
+    this.appState = appStateProvider.get();
     this.today = dataProvider.getToday();
+  }
+
+  switchHand(handType) {
+    this.hand = handType;
   }
 
   showPage(pageState) {
@@ -43,7 +52,7 @@ export class HomePage {
           countdownTimer();
         } else {
           this.dataProvider.record(this.timesClicked);
-          this.isSessionStarted = false;
+          this.appState.isSessionStarted = false;
           this.today = this.dataProvider.getToday();
           this.isDoneButtonShown = false;
           setTimeout(() => {
@@ -54,7 +63,7 @@ export class HomePage {
       }, 1000);
     };
 
-    this.isSessionStarted = true;
+    this.appState.isSessionStarted = true;
     this.countdown = COUNTDOWN_TIMER;
     this.timesClicked = 0;
     this.showPage(PageStates.Tap);
@@ -62,7 +71,7 @@ export class HomePage {
   }
 
   handleClick() {
-    if (this.isSessionStarted) {
+    if (this.appState.isSessionStarted) {
       this.timesClicked++;
     }
   }
@@ -71,7 +80,4 @@ export class HomePage {
     this.showPage(PageStates.Start);
   }
 
-  ionViewCanLeave(): boolean {
-    return !this.isSessionStarted;
-  }
 }
