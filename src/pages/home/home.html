@@ -1,10 +1,10 @@
 <ion-content class='start-page' [ngClass]='currentPageClass' (click)='handleClick()'>
   <div *ngIf='state == PageStates.Start' class='page'>
-    <ion-segment class='hand-selector' color='light' [(ngModel)]='hand'>
-      <ion-segment-button value='true'>
+    <ion-segment class='hand-selector-container' color='light' [(ngModel)]='hand'>
+      <ion-segment-button class='hand-selector-button' value='true'>
         <p>Left Hand</p>
       </ion-segment-button>
-      <ion-segment-button value='false'>
+      <ion-segment-button class='hand-selector-button' value='false'>
         <p>Right Hand</p>
       </ion-segment-button>
     </ion-segment>
