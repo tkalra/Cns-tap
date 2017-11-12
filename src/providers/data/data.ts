@@ -20,52 +20,55 @@ const localStorage = {
 export class Data {
   date: string;
   result: number = 0;
+  hand: boolean = false;
+  avgTimeBetweenTaps: number = 0;
 }
 
 @Injectable()
 export class DataProvider {
-  tapDbByKey: { [key: string]: Data } = {};
+  tapDbByKey: { [key: string]: Data[] } = {}; // Hash for indexing Data using dates.
   tapDb: Data[];
 
   constructor() {
-    let tapDb = localStorage.get(DB_KEY);
+    let tapDb = localStorage.get(DB_KEY); // DataBase
     if (!tapDb) {
       this.tapDb = [];
       this.tapDbByKey = {};
     } else {
       tapDb = this.decompress(tapDb);
       tapDb.forEach((el: Data) => {
-        this.tapDbByKey[el.date] = el;
+        let date = el.date;
+        let dataByDate = this.tapDbByKey[date];
+        if (!dataByDate) {
+          this.tapDbByKey[date] = [];
+        }
+
+        this.tapDbByKey[date].push(el);
       });
       this.tapDb = tapDb;
     }
   }
 
   save() {
-    localStorage.set(DB_KEY, this.compress(this.tapDb));
-  }
-
-  record(tapResult: number) {
-    const dateString = this.getDateString(new Date());
-    if (this.tapDbByKey[dateString]) {
-      // Average the result
-      let dataForDateString: Data = this.tapDbByKey[dateString];
-      let result = dataForDateString.result;
-      result += tapResult;
-      result /= 2;
-      dataForDateString.result = Math.round(result);
-    } else {
-      let data = new Data();
-      data.date = dateString;
-      data.result = tapResult;
-      this.tapDb.unshift(data);
-      this.tapDbByKey[dateString] = data;
-    }
-
     if (this.tapDb.length > DAYS_SAVED) {
       this.tapDb.pop();
     }
 
+    localStorage.set(DB_KEY, this.compress(this.tapDb));
+  }
+
+  record(tapResult: number, hand: boolean) {
+    const dateString = this.getDateString(new Date());
+    let data = new Data();
+    data.date = dateString;
+    data.result = tapResult;
+
+    this.tapDb.unshift(data); // Move the current entry to the top of the database.
+
+    if (!this.tapDbByKey[dateString]) {
+      this.tapDbByKey[dateString] = [];
+    }
+    this.tapDbByKey[dateString].push(data);
     this.save();
   }
 
