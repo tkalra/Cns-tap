@@ -23,4 +23,8 @@ export class SlidesPage {
   ];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
+
+  endSlides() {
+    this.navCtrl.pop();
+  }
 }

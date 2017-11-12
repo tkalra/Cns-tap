@@ -1,6 +1,18 @@
 page-home {
   .start-page {
     background: color($colors, 'bg');
+
+    .hand-selector {
+      max-height: 40px;
+      max-width: 85%;
+      margin-top: 0;
+      margin-bottom: 25px;
+
+      p {
+        margin: 0;
+        font-size: 20px;
+      }
+    }
   }
 
   .result-page {
@@ -46,6 +58,9 @@ page-home {
     }
     .button-inner {
       display: block;
+    }
+    .reversed {
+      transform: scaleX(-1);
     }
   }
 

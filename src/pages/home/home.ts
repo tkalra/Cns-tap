@@ -26,12 +26,14 @@ export class HomePage {
   timesClicked: number = 0;
   today: Data; // Today's result
   isDoneButtonShown: boolean = false;
+  hand: string; // false is right hand
 
   appState: AppState;
 
   constructor(public navCtrl: NavController, private dataProvider: DataProvider, appStateProvider: AppStateProvider) {
     this.appState = appStateProvider.get();
     this.today = dataProvider.getToday();
+    this.hand = 'false';
   }
 
   showPage(pageState) {

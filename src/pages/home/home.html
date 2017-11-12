@@ -1,10 +1,18 @@
 <ion-content class='start-page' [ngClass]='currentPageClass' (click)='handleClick()'>
   <div *ngIf='state == PageStates.Start' class='page'>
+    <ion-segment class='hand-selector' color='light' [(ngModel)]='hand'>
+      <ion-segment-button value='true'>
+        <p>Left Hand</p>
+      </ion-segment-button>
+      <ion-segment-button value='false'>
+        <p>Right Hand</p>
+      </ion-segment-button>
+    </ion-segment>
     <h3 *ngIf='!today'>Start a session!</h3>
     <h3 *ngIf='today'>Today's result is {{today.result}}</h3>
     <button class='start-button' ion-button (click)='startSession()'>
       <div class='icon'>
-        <i class='fa fa-hand-pointer-o' aria-hidden='true'></i>
+        <i class='fa fa-hand-pointer-o' [ngClass]='{"reversed": hand=="true"}' aria-hidden='true'></i>
       </div>
       <div *ngIf='!today' class='title'>Start</div>
       <div *ngIf='today' class='title'>Beat It!</div>
