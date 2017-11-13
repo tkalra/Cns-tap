@@ -80,7 +80,7 @@ export class DataProvider {
     let resultsArray = [];
     for (let i = 0; i < 7; i++) {
       let dateString = this.getDateString(startWeek);
-      let result: Data = this.tapDbByKey[dateString];
+      let result: Data[] = this.tapDbByKey[dateString];
       if (result) {
         resultsArray.push(result);
       } else {
@@ -93,7 +93,7 @@ export class DataProvider {
       startWeek.setDate(startWeek.getDate() + 1);
     }
 
-    return resultsArray;
+    return resultsArray; // returning an array containing of Data[] arrays
   }
 
   private getDateString(date: Date): string {
