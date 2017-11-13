@@ -20,7 +20,7 @@ export class ChartData {
   templateUrl: 'history.html'
 })
 export class HistoryPage {
-  data: Data[];
+  dataArray: Array<Data[]>;
   chartData: Array<any> = new ChartData().data;
 
   chartLabels: Array<any> = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
@@ -28,16 +28,40 @@ export class HistoryPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider) {}
 
   loadData() {
-    this.data = this.dataProvider.getThisWeek();
     this.chartData = new ChartData().data;
-    this.data.forEach(entry => {
-      let seriesRight = this.chartData[0];
-      let seriesLeft = this.chartData[1];
-      // if (entry.hand === false) {
-      seriesRight.data.push(Math.round(entry.result * 10) / 10);
-      // else {
-      // seriesLeft.data.push(Math.round(entry.result * 10) / 10);
-      // }
+    let seriesRight = this.chartData[0];
+    let seriesLeft = this.chartData[1];
+    console.log(this.dataProvider.getThisWeek());
+    this.dataArray = this.dataProvider.getThisWeek();
+    this.dataArray.forEach(array => {
+      if (array.length) {
+        let sumLeft: number = 0;
+        let numSessionsLeft: number = 0;
+        let sumRight: number = 0;
+        let numSessionsRight: number = 0;
+        array.forEach(entry => {
+          if (entry.hand === false) {
+            sumRight += entry.result;
+            numSessionsRight++;
+          } else {
+            sumLeft += entry.result;
+            numSessionsLeft++;
+          }
+        });
+        if (sumRight === 0) {
+          seriesRight.data.push(0);
+        } else {
+          seriesRight.data.push(Math.round(sumRight / numSessionsRight * 10) / 10);
+        }
+        if (sumLeft === 0) {
+          seriesLeft.data.push(0);
+        } else {
+          seriesLeft.data.push(Math.round(sumLeft / numSessionsLeft * 10) / 10);
+        }
+      } else {
+        seriesRight.data.push(0);
+        seriesLeft.data.push(0);
+      }
     });
   }
 
