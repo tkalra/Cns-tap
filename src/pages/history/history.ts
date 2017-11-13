@@ -31,7 +31,6 @@ export class HistoryPage {
     this.chartData = new ChartData().data;
     let seriesRight = this.chartData[0];
     let seriesLeft = this.chartData[1];
-    console.log(this.dataProvider.getThisWeek());
     this.dataArray = this.dataProvider.getThisWeek();
     this.dataArray.forEach(array => {
       if (array.length) {
