@@ -33,8 +33,11 @@ export class HistoryPage {
     this.data.forEach(entry => {
       let seriesRight = this.chartData[0];
       let seriesLeft = this.chartData[1];
+      // if (entry.hand === false) {
       seriesRight.data.push(Math.round(entry.result * 10) / 10);
-      seriesLeft.data.push(Math.floor(Math.random() * entry.result * 2)); // random [0, 2 * right hand result]
+      // else {
+      // seriesLeft.data.push(Math.round(entry.result * 10) / 10);
+      // }
     });
   }
 
@@ -59,27 +62,35 @@ export class HistoryPage {
           }
         }
       ]
+    },
+    tooltips: {
+      enabled: false
+    },
+    elements: {
+      point: {
+        hoverRadius: 3
+      }
     }
   };
 
-  public lineChartLegend: boolean = false;
+  public lineChartLegend: boolean = true;
   public lineChartType: string = 'line';
   public lineChartColors: Array<any> = [
     {
-      backgroundColor: 'rgba(230, 1, 21, 0.1)',
+      backgroundColor: 'rgba(230, 1, 21, 0.3)',
       borderColor: '#CA0335',
       pointBackgroundColor: '#96043E',
-      pointBorderColor: '#FFFFFF',
-      pointHoverBackgroundColor: '#FFFFFF',
-      pointHoverBorderColor: '#CA0335'
+      pointBorderColor: '#FFFFFF'
+      // pointHoverBackgroundColor: '#FFFFFF',
+      // pointHoverBorderColor: '#CA0335'
     },
     {
       backgroundColor: 'rgba(100, 1, 13, 0.3)',
       borderColor: '#7F0221',
       pointBackgroundColor: '#96043E',
-      pointBorderColor: '#FFFFFF',
-      pointHoverBackgroundColor: '#FFFFFF',
-      pointHoverBorderColor: '#7F0221'
+      pointBorderColor: '#FFFFFF'
+      // pointHoverBackgroundColor: '#FFFFFF',
+      // pointHoverBorderColor: '#7F0221'
     }
   ];
 }
