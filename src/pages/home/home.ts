@@ -24,6 +24,8 @@ export class HomePage {
   countdown: number = COUNTDOWN_TIMER;
   isSessionStarted: boolean = false;
   timesClicked: number = 0;
+  avgTimeBetweenTaps: number = 0;
+  startTapTime: Date;
   today: Data[]; // Today's result
   isDoneButtonShown: boolean = false;
   hand: boolean = false; // false is right hand
@@ -51,7 +53,7 @@ export class HomePage {
         if (this.countdown > 0) {
           countdownTimer();
         } else {
-          this.dataProvider.record(this.timesClicked, this.hand, 0.2);
+          this.dataProvider.record(this.timesClicked, this.hand, Number(this.avgTimeBetweenTaps.toFixed(3)));
           this.appState.isSessionStarted = false;
           this.today = this.dataProvider.getToday(); // TODO : has to change to show result only while it is going to be returning an bunch
           this.isDoneButtonShown = false;
@@ -73,6 +75,20 @@ export class HomePage {
   handleClick() {
     if (this.appState.isSessionStarted) {
       this.timesClicked++;
+      if (!this.startTapTime) {
+        this.startTapTime = new Date();
+      } else {
+        let currentDate = new Date();
+        let timeBetween = currentDate.getTime() - this.startTapTime.getTime();
+
+        if (this.avgTimeBetweenTaps) {
+          this.avgTimeBetweenTaps += timeBetween;
+          this.avgTimeBetweenTaps /= 2;
+        } else {
+          this.avgTimeBetweenTaps = timeBetween;
+        }
+        this.startTapTime = currentDate;
+      }
     }
   }
 
