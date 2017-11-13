@@ -44,11 +44,13 @@ export class DataProvider {
     this.storageProvider.set(DB_KEY, this.compress(this.tapDb));
   }
 
-  record(tapResult: number, hand: boolean) {
+  record(tapResult: number, hand: boolean, avgTimeBetweenTaps: number) {
     const dateString = this.getDateString(new Date());
     let data = new Data();
     data.date = dateString;
     data.result = tapResult;
+    data.hand = hand;
+    data.avgTimeBetweenTaps = avgTimeBetweenTaps;
 
     this.tapDb.unshift(data); // Move the current entry to the top of the database.
 
@@ -101,7 +103,7 @@ export class DataProvider {
   private compress(db) {
     let compressedDb = [];
     db.forEach((entry: Data) => {
-      compressedDb.push([entry.date, entry.result]);
+      compressedDb.push([entry.date, entry.result, entry.hand, entry.avgTimeBetweenTaps]);
     });
 
     return compressedDb;
@@ -113,6 +115,8 @@ export class DataProvider {
       let data = new Data();
       data.date = entry[0];
       data.result = entry[1];
+      data.hand = entry[2];
+      data.avgTimeBetweenTaps = entry[3];
       decompressedDb.push(data);
     });
 

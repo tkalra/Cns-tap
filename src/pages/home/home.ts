@@ -51,9 +51,9 @@ export class HomePage {
         if (this.countdown > 0) {
           countdownTimer();
         } else {
-          this.dataProvider.record(this.timesClicked);
+          this.dataProvider.record(this.timesClicked, this.hand, 0.2);
           this.appState.isSessionStarted = false;
-          this.today = this.dataProvider.getToday();
+          this.today = this.dataProvider.getToday(); // TODO : has to change to show result only while it is going to be returning an bunch
           this.isDoneButtonShown = false;
           setTimeout(() => {
             this.isDoneButtonShown = true;
@@ -79,5 +79,4 @@ export class HomePage {
   ionViewDidLeave() {
     this.showPage(PageStates.Start);
   }
-
 }
