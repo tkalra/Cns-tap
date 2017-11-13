@@ -8,11 +8,13 @@ const DAYS_SAVED = 365 * 2 + 1; // 2 years with leap year
 export class Data {
   date: string;
   result: number = 0;
+  hand: boolean = false;
+  avgTimeBetweenTaps: number = 0;
 }
 
 @Injectable()
 export class DataProvider {
-  tapDbByKey: { [key: string]: Data } = {};
+  tapDbByKey: { [key: string]: Data[] } = {}; // Hash for indexing Data using dates.
   tapDb: Data[];
 
   constructor(private storageProvider: StorageProvider) {
@@ -23,37 +25,39 @@ export class DataProvider {
     } else {
       tapDb = this.decompress(tapDb);
       tapDb.forEach((el: Data) => {
-        this.tapDbByKey[el.date] = el;
+        let date = el.date;
+        let dataByDate = this.tapDbByKey[date];
+        if (!dataByDate) {
+          this.tapDbByKey[date] = [];
+        }
+
+        this.tapDbByKey[date].push(el);
       });
       this.tapDb = tapDb;
     }
   }
 
   save() {
-    this.storageProvider.set(DB_KEY, this.compress(this.tapDb));
-  }
-
-  record(tapResult: number) {
-    const dateString = this.getDateString(new Date());
-    if (this.tapDbByKey[dateString]) {
-      // Average the result
-      let dataForDateString: Data = this.tapDbByKey[dateString];
-      let result = dataForDateString.result;
-      result += tapResult;
-      result /= 2;
-      dataForDateString.result = Math.round(result);
-    } else {
-      let data = new Data();
-      data.date = dateString;
-      data.result = tapResult;
-      this.tapDb.unshift(data);
-      this.tapDbByKey[dateString] = data;
-    }
-
     if (this.tapDb.length > DAYS_SAVED) {
       this.tapDb.pop();
     }
+    this.storageProvider.set(DB_KEY, this.compress(this.tapDb));
+  }
 
+  record(tapResult: number, hand: boolean, avgTimeBetweenTaps: number) {
+    const dateString = this.getDateString(new Date());
+    let data = new Data();
+    data.date = dateString;
+    data.result = tapResult;
+    data.hand = hand;
+    data.avgTimeBetweenTaps = avgTimeBetweenTaps;
+
+    this.tapDb.unshift(data); // Move the current entry to the top of the database.
+
+    if (!this.tapDbByKey[dateString]) {
+      this.tapDbByKey[dateString] = [];
+    }
+    this.tapDbByKey[dateString].push(data);
     this.save();
   }
 
@@ -76,7 +80,7 @@ export class DataProvider {
     let resultsArray = [];
     for (let i = 0; i < 7; i++) {
       let dateString = this.getDateString(startWeek);
-      let result: Data = this.tapDbByKey[dateString];
+      let result: Data[] = this.tapDbByKey[dateString];
       if (result) {
         resultsArray.push(result);
       } else {
@@ -89,7 +93,7 @@ export class DataProvider {
       startWeek.setDate(startWeek.getDate() + 1);
     }
 
-    return resultsArray;
+    return resultsArray; // returning an array containing of Data[] arrays
   }
 
   private getDateString(date: Date): string {
@@ -99,7 +103,7 @@ export class DataProvider {
   private compress(db) {
     let compressedDb = [];
     db.forEach((entry: Data) => {
-      compressedDb.push([entry.date, entry.result]);
+      compressedDb.push([entry.date, entry.result, entry.hand, entry.avgTimeBetweenTaps]);
     });
 
     return compressedDb;
@@ -111,6 +115,8 @@ export class DataProvider {
       let data = new Data();
       data.date = entry[0];
       data.result = entry[1];
+      data.hand = entry[2];
+      data.avgTimeBetweenTaps = entry[3];
       decompressedDb.push(data);
     });
 
