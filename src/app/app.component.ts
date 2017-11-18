@@ -16,7 +16,7 @@ export class MyApp {
     platform: Platform,
     statusBar: StatusBar,
     splashScreen: SplashScreen,
-    private screenOrientation: ScreenOrientation
+    screenOrientation: ScreenOrientation
   ) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
