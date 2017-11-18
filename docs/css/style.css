@@ -24,16 +24,21 @@ img {
   padding: 50px;
 }
 
-#phone-img {
-  max-width: 500px;
-  max-height: 500px;
-}
-
 #demo {
   text-align: right;
+}
+
+#phone-img {
+  max-height: 500px;
+  max-width: 500px;
 }
 
 #desc {
   text-align: left;
   padding-top: 20px;
+}
+
+#get-it {
+  max-height: 200px;
+  max-width: 200px;
 }
