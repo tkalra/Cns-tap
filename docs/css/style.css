@@ -1,0 +1,44 @@
+h2 {
+  margin: 0px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+img {
+  margin: 0px;
+}
+
+.header {
+  background-color: #CA0335;
+  color: white;
+  padding: 0px;
+  text-align: center;
+}
+
+.container {
+  max-width: 768px;
+  text-align: center;
+}
+
+.row {
+  padding: 50px;
+}
+
+#demo {
+  text-align: right;
+}
+
+#phone-img {
+  max-height: 500px;
+  max-width: 500px;
+}
+
+#desc {
+  text-align: left;
+  padding-top: 20px;
+}
+
+#get-it {
+  max-height: 200px;
+  max-width: 200px;
+}
