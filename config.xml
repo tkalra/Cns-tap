@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.pluzup.cns" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>CNS Tap</name>
-    <description>Central Nervous System Tester.</description>
-    <author email="cns@pluzup.com" href="https://pluzup.com/">Pluzup</author>
+    <description>Central Nervous System Tap Test</description>
+    <author email="tkalraoct31@gmail.com" href="https://tkalra.github.io/cns-tap/">tkalra</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
