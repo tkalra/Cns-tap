@@ -103,7 +103,7 @@ export class DataProvider {
   private compress(db) {
     let compressedDb = [];
     db.forEach((entry: Data) => {
-      compressedDb.push([entry.date, entry.result, entry.hand, entry.avgTimeBetweenTaps]);
+      compressedDb.push([entry.date, entry.result, entry.hand ? 1 : 0, entry.avgTimeBetweenTaps]);
     });
 
     return compressedDb;
@@ -115,7 +115,7 @@ export class DataProvider {
       let data = new Data();
       data.date = entry[0];
       data.result = entry[1];
-      data.hand = entry[2];
+      data.hand = +entry[2] ? true : false;
       data.avgTimeBetweenTaps = entry[3];
       decompressedDb.push(data);
     });
