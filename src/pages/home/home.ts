@@ -35,7 +35,11 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, private dataProvider: DataProvider, appStateProvider: AppStateProvider) {
     this.appState = appStateProvider.get();
-    let today = dataProvider.getToday();
+    this.updateTodayData();
+  }
+
+  updateTodayData() {
+    let today = this.dataProvider.getToday();
 
     let todayLeft = null;
     let todayRight = null;
@@ -70,7 +74,7 @@ export class HomePage {
         } else {
           this.dataProvider.record(this.timesClicked, this.hand, Number(this.avgTimeBetweenTaps.toFixed(3)));
           this.appState.isSessionStarted = false;
-          this.today = this.dataProvider.getToday(); // TODO : has to change to show result only while it is going to be returning an bunch
+          this.updateTodayData();
           this.isDoneButtonShown = false;
           setTimeout(() => {
             this.isDoneButtonShown = true;

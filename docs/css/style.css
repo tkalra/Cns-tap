@@ -25,13 +25,9 @@ img {
 }
 
 .container {
-  padding-top: 80px;
+  padding-top: 120px;
   max-width: 768px;
-  padding-bottom: 80px;
-}
-
-.row {
-  padding: 50px;
+  padding-bottom: 60px;
 }
 
 .row-section.demo {
@@ -84,10 +80,10 @@ img.phone__screen {
 
 img.phone__app--chart {
   opacity: 0;
-  -webkit-animation: opacity 10s ease-in-out infinite;
-  animation: opacity 10s ease-in-out infinite;
-  -webkit-animation-delay: 5s;
-  animation-delay: 5s;
+  -webkit-animation: opacity 12s ease-in-out infinite;
+  animation: opacity 12s ease-in-out infinite;
+  -webkit-animation-delay: 6s;
+  animation-delay: 6s;
 }
 
 @-webkit-keyframes opacity {
@@ -99,8 +95,12 @@ img.phone__app--chart {
     opacity: 1;
   }
 
-  90% {
+  50% {
     opacity: 1;
+  }
+
+  60% {
+    opacity: 0;
   }
 
   100% {
@@ -117,8 +117,12 @@ img.phone__app--chart {
     opacity: 1;
   }
 
-  90% {
+  50% {
     opacity: 1;
+  }
+
+  60% {
+    opacity: 0;
   }
 
   100% {
