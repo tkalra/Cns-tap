@@ -1,5 +1,19 @@
 body {
   background: #efefef;
+  font-size: 18px;
+}
+
+h1 {
+  margin-bottom: 25px;
+}
+
+ul {
+  padding-left: 20px;
+  margin-bottom: 35px;
+}
+
+li {
+  margin-bottom: 10px;
 }
 
 img {
