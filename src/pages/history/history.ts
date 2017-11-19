@@ -32,19 +32,20 @@ export class HistoryPage {
     let seriesRight = this.chartData[0];
     let seriesLeft = this.chartData[1];
     this.dataArray = this.dataProvider.getThisWeek();
-    this.dataArray.forEach(array => {
-      if (array.length) {
+    this.dataArray.forEach(results => {
+      if (results.length) {
         let sumLeft: number = 0;
         let numSessionsLeft: number = 0;
+
         let sumRight: number = 0;
         let numSessionsRight: number = 0;
-        array.forEach(entry => {
-          if (entry.hand === false) {
-            sumRight += entry.result;
-            numSessionsRight++;
-          } else {
+        results.forEach(entry => {
+          if (entry.hand) {
             sumLeft += entry.result;
             numSessionsLeft++;
+          } else {
+            sumRight += entry.result;
+            numSessionsRight++;
           }
         });
         if (sumRight === 0) {
@@ -58,8 +59,8 @@ export class HistoryPage {
           seriesLeft.data.push(Math.round(sumLeft / numSessionsLeft * 10) / 10);
         }
       } else {
-        seriesRight.data.push(0);
         seriesLeft.data.push(0);
+        seriesRight.data.push(0);
       }
     });
   }
@@ -102,15 +103,15 @@ export class HistoryPage {
     {
       backgroundColor: 'rgba(230, 1, 21, 0.3)',
       borderColor: '#CA0335',
-      pointBackgroundColor: '#96043E',
+      pointBackgroundColor: '#CA0335',
       pointBorderColor: '#FFFFFF'
       // pointHoverBackgroundColor: '#FFFFFF',
       // pointHoverBorderColor: '#CA0335'
     },
     {
-      backgroundColor: 'rgba(100, 1, 13, 0.3)',
-      borderColor: '#7F0221',
-      pointBackgroundColor: '#96043E',
+      backgroundColor: 'rgba(255, 196, 0, 0.8)',
+      borderColor: '#FFC400',
+      pointBackgroundColor: '#FFC400',
       pointBorderColor: '#FFFFFF'
       // pointHoverBackgroundColor: '#FFFFFF',
       // pointHoverBorderColor: '#7F0221'
