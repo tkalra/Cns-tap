@@ -26,7 +26,8 @@ export class HomePage {
   timesClicked: number = 0;
   avgTimeBetweenTaps: number = 0;
   startTapTime: Date;
-  today: Data[]; // Today's result
+  todayLeft: Data; // Today's result
+  todayRight: Data; // Today's result
   isDoneButtonShown: boolean = false;
   hand: boolean = false; // false is right hand
 
@@ -34,7 +35,21 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, private dataProvider: DataProvider, appStateProvider: AppStateProvider) {
     this.appState = appStateProvider.get();
-    this.today = dataProvider.getToday();
+    let today = dataProvider.getToday();
+
+    let todayLeft = null;
+    let todayRight = null;
+    for (var i = 0, len = today.length; i < len && (todayLeft === null || todayRight === null); i++) {
+      var result = today[i];
+      if (result.hand === true) {
+        todayLeft = result;
+      } else {
+        todayRight = result;
+      }
+    }
+
+    this.todayLeft = todayLeft;
+    this.todayRight = todayRight;
   }
 
   switchHand(handType) {

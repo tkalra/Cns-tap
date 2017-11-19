@@ -1,7 +1,5 @@
-h2 {
-  margin: 0px;
-  padding-top: 20px;
-  padding-bottom: 20px;
+body {
+  background: #efefef;
 }
 
 img {
@@ -9,36 +7,121 @@ img {
 }
 
 .header {
-  background-color: #CA0335;
+  background-color: #ca0335;
   color: white;
-  padding: 0px;
+  padding: 0;
   text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 20px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.7);
+}
+
+.header img {
+  height: 50px;
 }
 
 .container {
+  padding-top: 80px;
   max-width: 768px;
-  text-align: center;
+  padding-bottom: 80px;
 }
 
 .row {
   padding: 50px;
 }
 
-#demo {
+.row-section.demo {
   text-align: right;
 }
 
-#phone-img {
-  max-height: 500px;
-  max-width: 500px;
-}
-
-#desc {
+.row-section.info {
   text-align: left;
-  padding-top: 20px;
 }
 
-#get-it {
-  max-height: 200px;
-  max-width: 200px;
+@media screen and (max-width: 768px) {
+  .row-section {
+    text-align: center;
+    margin-bottom: 35px;
+  }
+}
+
+img {
+  max-width: 100%;
+}
+
+.phone {
+  position: relative;
+  width: 300px;
+}
+
+.phone img {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+img.phone__image {
+  z-index: 10;
+}
+
+img.phone__app {
+  z-index: 30;
+  left: 16px;
+  top: 45px;
+  width: 267px;
+}
+
+img.phone__screen {
+  z-index: 50;
+  width: 291px;
+  left: 5px;
+  top: 5px;
+}
+
+img.phone__app--chart {
+  opacity: 0;
+  -webkit-animation: opacity 10s ease-in-out infinite;
+  animation: opacity 10s ease-in-out infinite;
+  -webkit-animation-delay: 5s;
+  animation-delay: 5s;
+}
+
+@-webkit-keyframes opacity {
+  0% {
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes opacity {
+  0% {
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
 }

@@ -8,8 +8,9 @@
         <button ion-button block outline round (click)='switchHand(false)' [ngClass]='{ active: !hand }'>Right Hand</button>
       </div>
     </div>
-    <h3 *ngIf='!today'>Start a session!</h3>
-    <h3 *ngIf='today'>Today's result is {{today.result}}</h3>
+    <h3 *ngIf='(!hand && !todayRight) || (hand && !todayLeft)'>Start a session!</h3>
+    <h3 *ngIf='(!hand && todayRight)'>Today's best result is {{todayRight.result}}</h3>
+    <h3 *ngIf='(hand && todayLeft)'>Today's best result is {{todayLeft.result}}</h3>
     <button class='start-button' ion-button (click)='startSession()'>
       <div class='icon'>
         <i class='fa fa-hand-pointer-o' [ngClass]='{ reversed: hand }' aria-hidden='true'></i>

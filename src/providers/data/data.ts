@@ -61,14 +61,22 @@ export class DataProvider {
     this.save();
   }
 
-  getToday() {
+  getToday(): Data[] {
     const currentDate = new Date();
     const dateString = this.getDateString(currentDate);
     var result = this.tapDbByKey[dateString];
     if (result) {
+      result.sort(function(a, b) {
+        if (a.result < b.result) {
+          return -1;
+        } else if (a.result > b.result) {
+          return 1;
+        }
+        return 0;
+      });
       return result;
     }
-    return null;
+    return [];
   }
 
   getThisWeek() {
@@ -111,11 +119,7 @@ export class DataProvider {
       let data = new Data();
       data.date = entry[0];
       data.result = entry[1];
-<<<<<<< HEAD
-      data.hand = entry[2] ? true : false;
-=======
       data.hand = +entry[2] ? true : false;
->>>>>>> 55a557bfaefe8b244afd68062aba344ba3139d72
       data.avgTimeBetweenTaps = entry[3];
       decompressedDb.push(data);
     });
