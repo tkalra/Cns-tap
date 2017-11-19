@@ -45,6 +45,7 @@ img {
 }
 
 .row-section.demo {
+  min-height: 600px;
   text-align: right;
 }
 
@@ -53,9 +54,16 @@ img {
 }
 
 @media screen and (max-width: 768px) {
-  .row-section {
-    text-align: center;
+  .row-section.demo {
     margin-bottom: 35px;
+  }
+
+  .row-section.demo .phone {
+    margin: 0 auto;
+  }
+
+  .row-section.info h1 {
+    text-align: center;
   }
 }
 
