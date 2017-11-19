@@ -111,7 +111,11 @@ export class DataProvider {
       let data = new Data();
       data.date = entry[0];
       data.result = entry[1];
+<<<<<<< HEAD
       data.hand = entry[2] ? true : false;
+=======
+      data.hand = +entry[2] ? true : false;
+>>>>>>> 55a557bfaefe8b244afd68062aba344ba3139d72
       data.avgTimeBetweenTaps = entry[3];
       decompressedDb.push(data);
     });
