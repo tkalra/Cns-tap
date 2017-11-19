@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 
 @Component({
   selector: 'page-slides',
@@ -16,7 +16,7 @@ export class SlidesPage {
     },
     {
       title: 'How this helps with your health/fitness goals?',
-      description: `You should start with doing the 10 sec tap test every morning and in the begining to set a baseline you should do it after you have rested atleast 4 days after a workout session. After you have an intense workout your musculoskeletal system along with your nervous system is fatigued, 
+      description: `You should start with doing the 10 sec tap test every morning and in the begining to set a baseline you should do it after you have rested atleast 4 days after a workout session. After you have an intense workout your musculoskeletal system along with your nervous system is fatigued,
                     so doing a test on days after you worked out is good to see if your nervous system is recovered because if your nervous system has not yet adapted to the last workout then your musculoskeletal has most definitely not made that adaption either.
                      So going for another workout will basically lead to overtraining and you should wait untill your tap result is near the baseline. `
     },
